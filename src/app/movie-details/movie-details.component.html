@@ -22,7 +22,7 @@
                     </span>
                     <span> {{movie?.vote_count | numberWithCommas }} Reviews</span>
                     <span>{{movie?.release_date | date: 'yyyy' }}</span>
-                    <span>{{movie?.runtime | time  }}</span>
+                    <span>{{movie?.runtime | time }}</span>
                 </div>
             </div>
             <div class="desc">{{ movie?.overview }}</div>
@@ -65,7 +65,7 @@
                                             Runtime
                                         </div>
                                         <div class="value">
-                                            {{ movie?.runtime | time  }}
+                                            {{ movie?.runtime | time }}
                                         </div>
                                     </li>
                                     <li *ngIf="movie?.budget">
@@ -73,7 +73,7 @@
                                             Budget
                                         </div>
                                         <div class="value">
-                                            ${{ movie?.budget | numberWithCommas }}
+                                            {{ movie?.budget | currency:'GBP': 'symbol' : '1.0-0'}}
                                         </div>
                                     </li>
                                     <li *ngIf="movie?.revenue">
@@ -81,7 +81,7 @@
                                             Revenue
                                         </div>
                                         <div class="value">
-                                            ${{ movie?.revenue | numberWithCommas }}
+                                            {{ movie?.revenue | currency:'GBP': 'symbol' : '1.0-0' }}
                                         </div>
                                     </li>
 
@@ -118,7 +118,8 @@
                         <div class="listing__head">
                             <h2 class="listing__title">Cast</h2>
                         </div>
-                        <p-carousel [value]="casts" [numVisible]="6" [numScroll]="4" [circular]="false" [responsiveOptions]="responsiveOptions">
+                        <p-carousel [value]="casts" [numVisible]="6" [numScroll]="4" [circular]="false"
+                            [responsiveOptions]="responsiveOptions">
                             <ng-template let-cast pTemplate="item">
                                 <div class="listing-item-style" [routerLink]="['/person/', cast.id]">
                                     <img *ngIf="cast.profile_path"
@@ -169,7 +170,8 @@
                         <div class="items">
                             <div class="item backdrop_" *ngFor="let backdrop of backdrops | slice: 1:17">
                                 <div class="image">
-                                    <img class="lazyload" src="https://image.tmdb.org/t/p/w533_and_h300_bestv2/{{ backdrop?.file_path }}">
+                                    <img class="lazyload"
+                                        src="https://image.tmdb.org/t/p/w533_and_h300_bestv2/{{ backdrop?.file_path }}">
                                 </div>
                             </div>
                         </div>
@@ -182,7 +184,8 @@
                 <div class="listing__head">
                     <h2 class="listing__title">Recommended Movies</h2>
                 </div>
-                <p-carousel [value]="recomendMovies" [numVisible]="6" [numScroll]="4" [circular]="false" [responsiveOptions]="responsiveOptions">
+                <p-carousel [value]="recomendMovies" [numVisible]="6" [numScroll]="4" [circular]="false"
+                    [responsiveOptions]="responsiveOptions">
                     <ng-template let-recomend pTemplate="item">
                         <div class="listing-item-style" [routerLink]="['/movies/', recomend.id]">
                             <!-- <div class="overlay">
